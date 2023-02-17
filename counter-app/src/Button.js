@@ -1,6 +1,4 @@
-const Button = ({counter, setCounter}) => {
-    const buttons = ['+', 'reset', '-'];
-
+const Button = ({counter, setCounter, buttons}) => {
     const handleCount = (e) => {
         /*  `valueMap` is an object that has +, - and reset as keys &
         each key has a value that corresponds to what the counter should
