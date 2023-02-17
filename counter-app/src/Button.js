@@ -1,17 +1,19 @@
 const Button = ({counter, setCounter}) => {
     const buttons = ['+', 'reset', '-'];
 
-    const handleCount = (e) => {   
-        if (e.target.value === '+') {
-            return setCounter(counter + 1);
+    const handleCount = (e) => {
+        switch (e.target.value) {
+          case '+':
+            setCounter(counter + 1);
+            break;
+          case '-':
+            counter >= 1 ? setCounter(counter - 1) : setCounter(0);
+            break;
+          default:
+            setCounter(0);
+            break;
         }
-        
-        if (counter >= 1 && e.target.value === '-') {
-            return setCounter(counter - 1);
-        }
-
-        setCounter(0);
-    }
+    };
 
     return (
         <div className="btn">
