@@ -1,0 +1,24 @@
+{
+  "todos": [
+    {
+      "title": "Do some homework",
+      "isCompleted": false,
+      "id": 1
+    },
+    {
+      "title": "Buy some veggies",
+      "iscompleted": false,
+      "id": 2
+    },
+    {
+      "title": "hey",
+      "iscompleted": false,
+      "id": 3
+    },
+    {
+      "title": "wow",
+      "iscompleted": false,
+      "id": 4
+    }
+  ]
+}
