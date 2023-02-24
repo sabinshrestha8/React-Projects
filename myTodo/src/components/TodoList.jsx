@@ -23,6 +23,10 @@ const TodoList = () => {
         setData(prevData => [...prevData, newTodo]);
     }
 
+    const handledeletetodo = (id) => {
+        setData(data.filter(todo => id !== todo.id));
+    }
+
     return (
         <div className="todo-list">
             <h2>myTODO</h2>
@@ -31,6 +35,18 @@ const TodoList = () => {
                 <ul key={`${todo.id}-${todo.title}`}>
                     <li>
                         <p>{todo.title}</p>
+                        <button
+                        onClick={ () => {
+                            fetch('http://localhost:8000/todos/' + todo.id, {
+                                method: 'DELETE'
+                            })
+                            .then(
+                                () => {
+                                    handledeletetodo(todo.id);
+                                    console.log('todo deleted');
+                                }
+                            );
+                        } }>delete</button>
                     </li>
                 </ul>
             )) }
