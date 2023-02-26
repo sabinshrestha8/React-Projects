@@ -2,11 +2,11 @@ import { useState } from "react";
 
 const Create = ({ handleAddTodo }) => {
     const [title, setTitle] = useState("");
-    const [iscompleted, setIsCompleted] = useState(false);
+    // const [iscompleted, setIsCompleted] = useState(false);
 
     const handleSubmit = (e) => {  
         e.preventDefault();
-        const todo = { title, iscompleted };
+        const todo = { title, iscompleted: false };
         
         fetch('http://localhost:8000/todos', {
             method: 'post',
@@ -14,8 +14,12 @@ const Create = ({ handleAddTodo }) => {
             body: JSON.stringify(todo)
         })
         .then(
-            () => {
-                handleAddTodo(todo);
+            res => res.json()
+        )
+        .then(
+            (data) => {
+                // console.log(data);
+                handleAddTodo(data);
                 setTitle('');
                 console.log("todo added");
             }
@@ -34,7 +38,7 @@ const Create = ({ handleAddTodo }) => {
                     required
                 />
             </form>
-            <p>{ title }</p>
+            {/* <p>{ title }</p> */}
         </div>
     );
 }

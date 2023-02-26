@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import Create from "./Create";
 
 const TodoList = () => {
-    const [data, setData] = useState(null);
+    const [data, setData] = useState([]);
 
     useEffect(() => {
         fetch('http://localhost:8000/todos')
