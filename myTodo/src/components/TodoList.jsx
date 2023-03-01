@@ -5,12 +5,15 @@ const TodoList = () => {
     const [data, setData] = useState([]);
     const [title, setTitle] = useState("");
     const [index, setIndex] = useState(null);
-    const [iscompleted, setIsCompleted] = useState(false);
 
     useEffect(() => {
         fetch('http://localhost:8000/todos')
         .then(
-            (res) => {
+            res => {
+                if (!res.ok) {
+                    throw new Error('Failed to fetch todos'); 
+                }
+
                 return res.json();
             }
         )
@@ -48,8 +51,6 @@ const TodoList = () => {
                 setIndex={ setIndex }
                 data={ data }
                 setData={ setData }
-                iscompleted={ iscompleted }
-                setIsCompleted={ setIsCompleted }
             />
             { data && data.map(todo => (
                 <ul key={`${todo.id}-${todo.title}`}>
@@ -61,7 +62,15 @@ const TodoList = () => {
                                 headers: { 'Content-Type': 'application/json' },
                                 body: JSON.stringify({ ...todo, iscompleted: !todo.iscompleted })
                             })
-                            .then(res => res.json())
+                            .then(
+                                res => {
+                                    if (!res.ok) {
+                                        throw new Error('Failed to update todo'); 
+                                    }
+                                    
+                                    return res.json();
+                                }
+                            )
                             .then(newTodo => {
                                 const completedTodo = data.map(todo => {
                                     if (todo.id === newTodo.id) {
@@ -73,41 +82,8 @@ const TodoList = () => {
 
                                 setData(completedTodo);
                             })
+                            .catch(error => console.log(error));
                         }} />
-
-
-                        {/* <input type="checkbox" onClick={ () => {
-                            // setIsCompleted(() => {
-                            //     todo.iscompleted = true;
-                            // });
-
-                            // setIsCompleted(!todo.iscompleted);
-
-                            fetch('http://localhost:8000/todos/' + todo.id, {
-                                method: 'PATCH',
-                                headers: { "content-Type": "application/json" },
-                                body: JSON.stringify({...todo, iscompleted: !todo.iscompleted })
-                            })
-                            .then(
-                                res => res.json()
-                            )
-                            .then((newTodo) => {
-                                // setIsCompleted({...newTodo, iscompleted: !iscompleted});
-                                // setIsCompleted(() => {
-                                //     newTodo.iscompleted = iscompleted ? !iscompleted : iscompleted;
-                                // });
-                                
-                                const completedTodo = data.map((todo) => {
-                                    if (todo.id === newTodo.id) {
-                                        return {...todo, iscompleted: !newTodo.iscompleted };
-                                    }
-                
-                                    return todo;
-                                })
-                
-                                setData(completedTodo);
-                            });
-                        } } /> */}
                         <p className={todo.iscompleted ? "completed" : ""}>{todo.title}</p>
                         </div>
                         <div>
@@ -117,11 +93,16 @@ const TodoList = () => {
                                         method: 'DELETE'
                                     })
                                     .then(
-                                        () => {
+                                        res => {
+                                            if (!res.ok) {
+                                                throw new Error('Failed to delete todo');
+                                            }
+
                                             handledeletetodo(todo.id);
                                             console.log('todo deleted');
                                         }
-                                    );
+                                    )
+                                    .catch(error => console.log(error));
                                 } }>delete</button>
                                 <button
                                 onClick={ () => {

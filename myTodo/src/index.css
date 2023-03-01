@@ -26,10 +26,9 @@ img {
 .todo-list h2 {
     display: flex;
     padding: 5px;
-    margin: 5px auto;
+    margin: 20px auto;
     justify-content: center;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-
 }
 
 body {
@@ -38,7 +37,7 @@ body {
 
 .add-todo {
     padding: 10px;
-    margin: 20px auto;
+    margin: 10px auto;
     width: 100%;
     max-width: 20%;
 }
@@ -83,6 +82,11 @@ body {
     margin-right: 8px;
 }
 
+.todo-list p {
+    display: inline;
+    padding-left: 0.5rem;
+}
+
 .todo-list button:hover {
     background-color: #E8E8E8;
 }
@@ -90,5 +94,3 @@ body {
 .completed {
     text-decoration: line-through;
 }
-
-/* style={{textDecoration: todo.iscompleted ? "line-through" : "none"}} */
