@@ -49,13 +49,18 @@ body {
     font-weight: bold;
 }
 
-.add-todo input {
-    padding: 10px 8px;
-    margin: 10px auto;
-    border: 1px solid #ddd;
-    box-sizing: border-box;
-    border-radius: 3px;
+input[type=text] {
     width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input[type="checkbox"] {
+    accent-color: rgb(122, 117, 117);
 }
 
 .todo-list ul {
