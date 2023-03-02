@@ -19,14 +19,14 @@ const TodoList = () => {
         )
         .then(
             data => {
-                setData(data);
-                // console.log(data);
+                const sortedTodos = data.sort((c1, c2) => c2.id - c1.id);
+                setData(sortedTodos);
             }
         )
     }, []);
 
     const handleAddTodo = (newTodo) => {
-        setData(prevData => [...prevData, newTodo]);
+        setData(prevData => [newTodo, ...prevData]);
     }
 
     const handledeletetodo = (id) => {
