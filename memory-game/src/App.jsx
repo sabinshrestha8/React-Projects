@@ -17,7 +17,6 @@ function App() {
   const [choiceOne, setChoiceOne] = useState(null)
   const [choiceTwo, setChoiceTwo] = useState(null)
 
-
   // shuffle cards
   const shuffleCards = () => {
     const shuffledCards = [...cardImages, ...cardImages]  // duplicate each of the cards once for matching
@@ -51,7 +50,7 @@ function App() {
         })
         resetTurn()
       } else {
-        resetTurn()
+        setTimeout(() => resetTurn(), 1000)
       }      
     }
   }, [choiceOne, choiceTwo])
@@ -75,6 +74,7 @@ function App() {
             card={card}
             key={card.id}
             handleChoice={ handleChoice }
+            flipped={card === choiceOne || card === choiceTwo || card.matched}
           />
         ))}
       </div>
