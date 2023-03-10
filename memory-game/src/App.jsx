@@ -69,6 +69,9 @@ function App() {
 
   // handle a choice
   function handleChoice(card) {
+    // Stop user from being able to click first card twice
+    if(card.id === choiceTwo?.id) return;
+
     // these states updates are scheduled & not update on instant
     choiceOne ? setChoiceTwo(card) : setChoiceOne(card)
   }
