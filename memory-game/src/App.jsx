@@ -25,6 +25,10 @@ function App() {
       .sort(() => Math.random() - 0.5)  // if returns -ve num then compared items order remains same else order swaps
       .map((card) => ({ ...card, id: Math.random() }))  // add any random id property on each of the cards
 
+      // just incase if choiceOne & choiceTwo had selected value
+      setChoiceOne(null)
+      setChoiceTwo(null)
+
       setCards(shuffledCards)  // update the cards state
       setTurns(0)  // reset the turns state to 0
   }
@@ -58,7 +62,10 @@ function App() {
     }
   }, [choiceOne, choiceTwo])
 
-  console.log(cards);
+  // start a new game automatically
+  useEffect(() => {
+    shuffleCards()
+  }, [])
 
   // handle a choice
   function handleChoice(card) {
@@ -82,6 +89,7 @@ function App() {
           />
         ))}
       </div>
+      <p>Turns: {turns}</p>
     </div>
   )
 }
