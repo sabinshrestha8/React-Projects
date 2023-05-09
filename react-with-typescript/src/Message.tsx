@@ -1,0 +1,11 @@
+// PascalCasing
+function Message() {  // In react application whenever you create a function component we should always follow pascal casing.
+    // JSX: JavaScript XML
+    const name = 'Mosh';
+
+    if (name)
+        return <h1>Hello { name }</h1>;
+    return <h1>Hello World</h1>;
+}
+
+export default Message;
