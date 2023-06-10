@@ -1,13 +1,19 @@
 function ListGroup() {
+    const items = [
+        'New York',
+        'San Francisco',
+        'Tokyo',
+        'London',
+        'Paris' 
+    ];
+
     return (
         <>
             <h1>List</h1>   {/* In react a component cannot return more than one element. To solve this problem we can wrap these markup inside <div> or fragment(<>). */}
             <ul className="list-group">
-                <li className="list-group-item">An item</li>
-                <li className="list-group-item">A second item</li>
-                <li className="list-group-item">A third item</li>
-                <li className="list-group-item">A fourth item</li>
-                <li className="list-group-item">And a fifth one</li>
+                {items.map((item) => (
+                    <li key={item} className="list-group-item">{item}</li>
+                ))}
             </ul>
         </>
     );
