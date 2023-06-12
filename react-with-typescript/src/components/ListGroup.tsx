@@ -1,4 +1,4 @@
-import { MouseEvent } from "react";
+import { useState } from "react";
 
 function ListGroup() {
     let items = [
@@ -9,10 +9,8 @@ function ListGroup() {
         'Paris' 
     ];
 
-    // To create an event handler fn, by convention we start with the word handle & then we specify the type of event
-    const handleClick = (event: MouseEvent) => { /* Using `Type Annotation` to specify the type of event param */
-        console.log(event);
-    };
+    // useState() hook returns an array containing two elements which is then destructured as below:
+    let [selectedIndex, setSelectedIndex] = useState(-1);
 
     return (
         <>
@@ -21,9 +19,12 @@ function ListGroup() {
             <ul className="list-group"> 
                 {items.map((item, index) => ( // when mapping items we can opt add index as 2nd param & with this we can log index of an item that was clicked.
                     <li key={item} 
-                        className="list-group-item" 
-                        // onClick={(event) => console.log(item, index, event)}
-                        onClick={handleClick}
+                        className={
+                            selectedIndex === index 
+                                ? 'list-group-item active' 
+                                : 'list-group-item'
+                        } 
+                        onClick={() => setSelectedIndex(index)}
                     >
                         {item}
                     </li>
