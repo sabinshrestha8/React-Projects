@@ -4,10 +4,12 @@ import { useState } from "react";
 interface Props {
     heading: string;
     items: string[];
+    // (item: string) => void
+    onSelectItem: (item: string) => void;
 }
 
 // function ListGroup(props: Props)
-function ListGroup({ items, heading }: Props) { // destructuring the props parameter
+function ListGroup({ items, heading, onSelectItem }: Props) { // destructuring the props parameter
     // useState() hook returns an array containing two elements which is then destructured as below:
     let [selectedIndex, setSelectedIndex] = useState(-1);
 
@@ -23,7 +25,10 @@ function ListGroup({ items, heading }: Props) { // destructuring the props param
                                 ? 'list-group-item active' 
                                 : 'list-group-item'
                         } 
-                        onClick={() => setSelectedIndex(index)}
+                        onClick={() => {
+                            setSelectedIndex(index);
+                            onSelectItem(item);
+                        }}
                     >
                         {item}
                     </li>
