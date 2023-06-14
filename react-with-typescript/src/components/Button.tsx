@@ -1,6 +1,13 @@
+/* 
+ * Creates a rule/custom type to specify the type of the color property
+ * within an interface. This rule ensures that only colors of the specified
+ * type can be assigned to that property.
+ */
+type color = 'primary'|'secondary'|'danger'|'info'|'success'|'warning';
+ 
 interface Props {
     children: string;
-    color?: string; // If we add `?` after property name then it represents that the property is optional.
+    color?: color; // If we add `?` after property name then it represents that the property is optional.
     onClick: () => void;
 }
 
