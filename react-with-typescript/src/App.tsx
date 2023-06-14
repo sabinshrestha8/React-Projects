@@ -1,20 +1,14 @@
-import ListGroup from "./components/ListGroup";
+import Alert from "./components/Alert";
 
 function App() {
-  let items = [
-    'New York',
-    'San Francisco',
-    'Tokyo',
-    'London',
-    'Paris' 
-  ];
-
-  const handleSelectItem = (item: string) => {
-    console.log(item);
-  }
-
-  // In react, Each component has it's own state. So they will be independent of each other. For example: Each `ListGroup` is going to have it's own state.
-  return <div><ListGroup heading="Cities" items={items} onSelectItem={handleSelectItem} /></div>;
+  return (
+    <div>
+      {/* <Alert text="Hello World" /> */}
+      <Alert>
+        Hello <span>World</span> {/* passing text, html content as a child to this component */}
+      </Alert>
+    </div>
+  );
 }
 
 export default App;
