@@ -8,11 +8,15 @@ interface Props {
    */
   // text: string;
   children: ReactNode; // This is the ReactNode class defined in the react module & with that we can pass HTML Content to `Alert` component. 
+  onClose: () => void;
 }
 
-const Alert = ({ children }: Props) => {
+const Alert = ({ children, onClose }: Props) => {
   return (
-    <div className="alert alert-primary">{children}</div>
+    <div className="alert alert-primary alert-dismissible">
+      {children}
+      <button type="button" className="btn-close" data-bs-dismiss="alert" aria-label="Close" onClick={onClose}></button>
+    </div>
   );
 }
 

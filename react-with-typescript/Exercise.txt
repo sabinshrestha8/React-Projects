@@ -1,1 +1,5 @@
-Create a Bootstrap button component.
+Step 1: Create a Bootstrap button component.
+
+Step 2: Write the necessary code so when we click the button we see an alert.
+
+Step 3: And when we click the ['X'] symbol on alert then the alert disappears.
