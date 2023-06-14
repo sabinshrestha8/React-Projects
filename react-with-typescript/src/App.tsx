@@ -1,12 +1,11 @@
-import Alert from "./components/Alert";
+import Button from "./components/Button";
 
 function App() {
   return (
     <div>
-      {/* <Alert text="Hello World" /> */}
-      <Alert>
-        Hello <span>World</span> {/* passing text, html content as a child to this component */}
-      </Alert>
+      <Button onClick={() => console.log('clicked')}>
+        Click Me
+      </Button>
     </div>
   );
 }
